@@ -1,7 +1,41 @@
-import React, { memo } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
+import Api from '../../api';
+import Board from './componentes/Board';
+import Panel from './componentes/Panel';
+import { ContainerStyled } from './style';
 
 function Main() {
-  return <div>Teste</div>;
+  const [data, setData] = useState({});
+  const [country, setCountry] = useState('brazil');
+  const updateAt = new Date().toLocaleString();
+
+  const getCovidData = useCallback((country) => {
+    Api.getCountry(country).then((data) => setData(data));
+  }, []);
+
+  useEffect(() => {
+    getCovidData(country);
+  }, [getCovidData, country]);
+
+  const handleChange = ({ target }) => {
+    const country = target.value;
+    setCountry(country);
+  };
+
+  return (
+    <ContainerStyled>
+      <div className="mb-2">
+        <Panel
+          data={data}
+          updateAt={updateAt}
+          onChange={handleChange}
+          country={country}
+          getCovidData={getCovidData}
+        />
+      </div>
+      <Board data={data} />
+    </ContainerStyled>
+  );
 }
 
 export default memo(Main);
