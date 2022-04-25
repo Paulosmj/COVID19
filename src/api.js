@@ -1,3 +1,4 @@
+/* eslint import/no-anonymous-default-export: [2, {"allowObject": true}] */
 const path = 'http://coronavirus-19-api.herokuapp.com/countries';
 
 const headers = {
@@ -6,7 +7,6 @@ const headers = {
     cache: 'default'
 }
 
-/* eslint import/no-anonymous-default-export: [2, {"allowObject": true}] */
 function getCountry(country) {
     return fetch(`${path}/${country}`, headers)
         .then((response) => response.json())
@@ -15,4 +15,6 @@ function getCountry(country) {
         })
 }
 
-export default { getCountry };
+export default {
+    getCountry
+}

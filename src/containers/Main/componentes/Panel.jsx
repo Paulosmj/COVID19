@@ -1,6 +1,5 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
-// eslint-disable-next-line no-unused-vars
 import RefreshIcon from '../../../assets/images/refresh.svg';
 import {
   Card,
@@ -14,7 +13,7 @@ import { CardPanelContentStyled, ItemStyled } from './style';
 
 const navigatorHasShare = navigator.share;
 
-function Panel({ updateAt, onChange, data, country, getCoviddata }) {
+function Panel({ updateAt, onChange, data, country, getCovidData }) {
   const { cases, recovered, deaths, todayCases, todayDeaths } = data;
 
   const renderCountries = (country, index) => (
@@ -32,7 +31,7 @@ function Panel({ updateAt, onChange, data, country, getCoviddata }) {
     navigator.share({
       title: `Dados do Covid19 - ${country}`,
       text: textCovid19,
-      url: 'http://covid19dio.netlify.app/',
+      url: 'http://covid19-psm.netlify.app/',
     });
   };
 
@@ -66,9 +65,15 @@ function Panel({ updateAt, onChange, data, country, getCoviddata }) {
           <Typography variant="h6" component="span" color="primary">
             Painel Coronavírus -
           </Typography>
-          <Typography variant="body2" component="span" color="primary">
+          <Typography variant="body2" component="span" color="secondary">
             Atualizado em: {updateAt}
           </Typography>
+          <img
+            src={RefreshIcon}
+            alt="Atualizar"
+            onClick={() => getCovidData(country)}
+            className="cursor"
+          />
           <div className="pt-2">
             <Select onChange={onChange} value={country}>
               {COUNTRIES.map(renderCountries)}
