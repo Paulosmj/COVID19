@@ -1,4 +1,6 @@
 import React, { memo } from 'react';
+import PropTypes from 'prop-types';
+// eslint-disable-next-line no-unused-vars
 import RefreshIcon from '../../../assets/images/refresh.svg';
 import {
   Card,
@@ -24,11 +26,7 @@ function Panel({ updateAt, onChange, data, country, getCoviddata }) {
     </MenuItem>
   );
 
-  const textCovid19 = `País: ${country} - recuperados: ${recovered}`;
-
-  const copyInfo = () => {
-    navigator.clipboard.writeText(textCovid19);
-  };
+  const textCovid19 = `País: ${country} - Dados atualizados em ${updateAt} - Hoje - Casos: ${todayCases}. Óbitos: ${todayDeaths}. Total - Casos: ${cases}. Óbitos: ${deaths}. Recuperados: ${recovered}`;
 
   const shareInfo = () => {
     navigator.share({
@@ -36,6 +34,10 @@ function Panel({ updateAt, onChange, data, country, getCoviddata }) {
       text: textCovid19,
       url: 'http://covid19dio.netlify.app/',
     });
+  };
+
+  const copyInfo = () => {
+    navigator.clipboard.writeText(textCovid19);
   };
 
   const renderShareButton = (
@@ -78,5 +80,12 @@ function Panel({ updateAt, onChange, data, country, getCoviddata }) {
     </Card>
   );
 }
+
+Panel.propTypes = {
+  data: PropTypes.object.isRequired,
+  updatedAt: PropTypes.string.isRequired,
+  country: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
 
 export default memo(Panel);
