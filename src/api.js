@@ -13,7 +13,5 @@ function getCountry(country) {
             console.error('Failed retrieving information', err);
         })
 }
-
-export default {
-    getCountry
-}
+/* eslint import/no-anonymous-default-export: [2, {"allowObject": true}] */
+export default { getCountry }
