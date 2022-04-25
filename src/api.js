@@ -1,5 +1,4 @@
-/* eslint import/no-anonymous-default-export: [2, {"allowObject": true}] */
-const path = 'http://coronavirus-19-api.herokuapp.com/countries';
+const path = 'https://coronavirus-19-api.herokuapp.com/countries'
 
 const headers = {
     method: 'get',
