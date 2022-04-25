@@ -14,4 +14,13 @@ function Card({ value, label, color }) {
   );
 }
 
+Card.propTypes = {
+  value: PropTypes.oneOfType([
+    PropTypes.object.isRequired,
+    PropTypes.number.isRequired,
+  ]),
+  label: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired,
+};
+
 export default memo(Card);
