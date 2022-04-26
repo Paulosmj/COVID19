@@ -8,5 +8,3 @@ thas was selected to construct the pwa.
 This projec is using an api that has mapping the cases around the world.
 
 Project URL: https://main--covid19-psm.netlify.app/
-
-api: https://coronavirus-19-api.herokuapp.com/countries
